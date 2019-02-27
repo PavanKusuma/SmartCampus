@@ -6,7 +6,7 @@ public class Routes {
     public static final String authenticateUser = "http://112.133.223.214/campus/public/index.php/authenticateUser/";
 
     // leave and outing requests
-    public static final String newRequest = "http://10.0.2.2:5000/api/new_request/";
+    public static final String newRequest = "http://10.0.2.3:5000/api/new_request/";
     public static final String closeRequest = "http://10.0.2.2:5000/api/close_request/";
     public static final String myRequests = "http://10.0.2.2:5000/api/my_new_requests/";
     public static final String requestHistory = "http://10.0.2.2:5000/api/my_requests/";
