@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@color/white"
+        android:id="@+id/updateLayout">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/updateImageView"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="@color/lightBackground"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/updateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="4"
+            app:lineHeight="26sp"
+            android:text="@string/lorem"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:fontFamily="@font/karla"
+            android:layout_below="@id/updateImageView"
+            android:textColor="@color/textPrimary"
+            android:layout_marginTop="8dp"/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/userImageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/updateText"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            app:srcCompat="@drawable/ic_profile"
+            android:visibility="gone"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/usernameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="30"
+            android:layout_below="@id/updateText"
+            android:layout_toRightOf="@id/userImageView"
+            android:layout_toEndOf="@id/userImageView"
+            android:layout_marginTop="16dp"
+            android:text="@string/lorem"
+            app:fontFamily="@font/poppins_medium"
+            android:textColor="@color/textSecondary"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/userDetailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLength="20"
+            android:layout_below="@id/usernameText"
+            android:layout_toRightOf="@id/userImageView"
+            android:layout_toEndOf="@id/userImageView"
+            android:text="@string/lorem"
+            app:fontFamily="@font/poppins_medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/stroke"/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/updateLikeView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_below="@id/usernameText"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            app:srcCompat="@drawable/ic_emptylike"
+            />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/roleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userDetailText"
+            android:text="@string/role"
+            app:fontFamily="@font/poppins_medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/appPrimary"
+            android:background="@color/lightBackground"
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:paddingRight="4dp"
+            android:paddingEnd="4dp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/updateDurationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/updateLayout"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="1 day ago"
+            android:paddingTop="4dp"
+            app:fontFamily="@font/poppins_medium"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textColor="@color/stroke" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/commentCountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/updateLayout"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="View 5 comments"
+        android:textStyle="italic"
+        android:padding="8dp"
+        app:fontFamily="@font/poppins_medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="@color/stroke"
+        />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/addCommentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/commentCountText"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Write a comment .."
+        android:textStyle="italic"
+        android:padding="8dp"
+        app:fontFamily="@font/poppins_medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="@color/textSecondary"
+        />
+
+</RelativeLayout>

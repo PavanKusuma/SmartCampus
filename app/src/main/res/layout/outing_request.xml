@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:id="@+id/outingLayout">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="32dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/outingHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Request Outing"
+                android:textSize="18sp"
+                android:textColor="@color/textPrimary"
+                app:fontFamily="@font/poppins_medium"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/datesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_below="@id/outingHeading"
+                android:paddingBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp">
+
+                <RelativeLayout
+                    android:id="@+id/fromDateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="@drawable/secondary_background"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginEnd="4dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/fromHeading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FROM"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        app:textAllCaps="true"
+                        app:fontFamily="@font/karla"
+                        android:paddingBottom="8dp"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/outingFromDayText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mon"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/brand_black"
+                        android:paddingRight="4dp"
+                        android:paddingEnd="4dp"
+                        android:layout_below="@id/fromHeading"
+                        app:fontFamily="@font/karla"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/outingFromDateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="04 Feb"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/brand_black"
+                        android:paddingRight="4dp"
+                        android:paddingEnd="4dp"
+                        android:layout_below="@id/outingFromDayText"
+                        app:fontFamily="@font/karla"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/toDateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:background="@drawable/secondary_background"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/toHeading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TO"
+                        android:textSize="12sp"
+                        android:textStyle="normal"
+                        app:textAllCaps="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        app:fontFamily="@font/karla"
+                        android:paddingBottom="8dp"/>
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/outingToDayText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tue"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:gravity="right"
+                        android:textColor="@color/brand_black"
+                        android:layout_below="@id/toHeading"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        app:fontFamily="@font/karla"/>
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/outingToDateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="05 Feb"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:gravity="right"
+                        android:textColor="@color/brand_black"
+                        android:layout_below="@id/outingToDayText"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        app:fontFamily="@font/karla"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/outingDurationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/datesLayout"
+                android:text="Duration: 2 Day(s)"/>
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/outingText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="120dp"
+                android:maxHeight="120dp"
+                android:layout_below="@id/outingDurationText"
+                android:background="@drawable/secondary_background"
+                android:padding="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:hint="Your Reason for Outing.."
+                android:gravity="top"
+                app:fontFamily="@font/karla"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/submitOuting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submit"
+                android:layout_below="@id/outingText"
+                app:fontFamily="@font/poppins_medium"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/primary_background"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+            <View
+                android:id="@+id/seperator_one"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                android:layout_below="@id/submitOuting"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/requestInfo"
+                android:layout_below="@id/seperator_one"
+                android:textColor="@color/textThrid"
+                android:gravity="center"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <include layout="@layout/progress_bottomsheet"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

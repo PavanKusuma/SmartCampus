@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="#33000000"
+    app:behavior_hideable="true"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+    android:id="@+id/bottomSheetProgress">
+
+    <RelativeLayout
+        android:id="@+id/loaderView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:visibility="visible"
+        android:background="@drawable/white_background">
+
+        <ProgressBar
+            android:id="@+id/bottomProgressBar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/loaderText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/bottomProgressBar"
+            android:layout_toEndOf="@id/bottomProgressBar"
+            android:text="SUBMITTING YOUR REQUEST..."
+            android:padding="8dp"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/resultView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/resultImage"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            app:srcCompat="@drawable/ic_requests"
+            android:layout_margin="16dp"
+            android:layout_centerHorizontal="true"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/resultText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Result message!"
+            android:layout_below="@id/resultImage"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

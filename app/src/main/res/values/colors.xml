@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2567F6</color>
+    <color name="colorPrimaryDark">#2567F6</color>
+    <color name="colorAccent">#999999</color>
+
+    <color name="stroke">#cccccc</color>
+
+    <color name="textPrimary">#333333</color>
+    <color name="textSecondary">#999999</color>
+    <color name="textThrid">#cccccc</color>
+    <color name="lightBackground">#E8F0FE</color>
+    <color name="lightBg">#f5f5f5</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="line">#e3e3e3</color>
+
+    <color name="appPrimary">#2567F6</color>
+    <color name="appPrimaryDark">#2845E0</color>
+
+    <color name="green">#59AD06</color>
+    <color name="yellow">#FFD54F</color>
+    <color name="blue">#4FB5FF</color>
+    <color name="red">#DA4743</color>
+
+    <color name="brand_yellow">#FFB600</color>
+    <color name="brand_black">#252729</color>
+    <color name="brand_light">#F6F7EF</color>
+
+    <color name="palette_red">#F26255</color>
+    <color name="palette_orange">#FF9159</color>
+    <color name="palette_yellow">#FFBF66</color>
+</resources>

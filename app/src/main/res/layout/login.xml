@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/loginHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Smart Campus"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:layout_margin="16dp"
+        android:textColor="@color/textPrimary"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="visible">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/collegeId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="College Id"
+            android:padding="16dp"
+            android:layout_margin="2dp"
+            android:background="@color/lightBackground"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/mobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mobile Number"
+            android:layout_below="@id/collegeId"
+            android:padding="16dp"
+            android:layout_margin="2dp"
+            android:inputType="number"
+            android:background="@color/lightBackground"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobileNumber"
+            android:text="Login"
+            android:layout_margin="2dp"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:background="@color/appPrimary"/>
+
+        <ProgressBar
+            android:id="@+id/progressBarLogin"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            style="?android:attr/progressBarStyleSmallTitle"
+            android:layout_centerHorizontal="true"
+            android:indeterminate="false"
+            android:max="100"
+            android:padding="4dp"
+            android:visibility="gone"
+            android:layout_below="@id/loginBtn"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone">
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/infoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OTP is sent to :"
+            android:textColor="@color/textSecondary"
+            android:layout_marginBottom="16dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="OTP"
+            android:textColor="@color/textPrimary"
+            android:background="@color/lightBackground"
+            android:padding="16dp"
+            android:layout_margin="2dp"
+            android:maxLength="4"
+            android:layout_below="@id/infoText"
+            android:inputType="numberPassword"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/submitBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/otp"
+            android:text="SUBMIT"
+            android:textColor="@color/white"
+            android:background="@color/appPrimary"
+            android:layout_margin="2dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBarOTP"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerHorizontal="true"
+            android:indeterminate="false"
+            android:max="100"
+            android:visibility="gone"
+            android:layout_below="@id/submitBtn"
+            android:padding="4dp"/>
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/errorText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Campus"
+        android:textColor="@color/red"
+        android:layout_margin="16dp"
+        android:visibility="gone"/>
+
+</LinearLayout>

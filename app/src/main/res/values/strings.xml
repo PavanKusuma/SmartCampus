@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SmartCampus</string>
+
+    <string name="feed">Feed</string>
+    <string name="requests">Requests</string>
+    <string name="profile">Profile</string>
+    <string name="batch">Batch</string>
+    <string name="more">More</string>
+    <string name="updates">Updates</string>
+    <string name="circulars">Circulars</string>
+    <string name="post">Post</string>
+    <string name="submit">Submit</string>
+
+    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
+
+    <string name="role">Role</string>
+    <string name="requestInfo">Your request will be submitted to Admin of your branch. You will be notified when request is addressed.</string>
+</resources>

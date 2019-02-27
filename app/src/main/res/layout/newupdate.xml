@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:padding="16dp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/usernameText"
+        android:text="Gwen Stacy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textColor="@color/textSecondary"
+        app:fontFamily="@font/poppins_medium"/>
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/updateDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:hint="What's happening?"
+        android:padding="8dp"
+        android:layout_below="@id/usernameText"
+        app:fontFamily="@font/karla"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/post"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/appPrimary"
+        app:fontFamily="@font/poppins_medium"
+        android:textStyle="bold"
+        android:textColor="@color/white"/>
+
+</RelativeLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/feedHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feed"
+        app:fontFamily="@font/poppins_medium"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/brand_black"
+        android:layout_marginTop="16dp"/>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/circularsHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/circulars"
+        app:fontFamily="@font/poppins_medium"
+        android:textColor="@color/textSecondary"
+        android:layout_below="@id/feedHeading"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/circularsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/circularsHeading"
+        />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/updatesHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/updates"
+        app:fontFamily="@font/poppins_medium"
+        android:textColor="@color/textSecondary"
+        android:layout_below="@id/circularsListView"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/updatesListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/updatesHeading"/>
+
+</RelativeLayout>
