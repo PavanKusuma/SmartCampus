@@ -23,6 +23,7 @@ public class Constants {
     public static final String charset = "UTF-8";
     public static final String null_indicator = "-";
     public static final String status = "status";
+    public static final String data = "data";
     public static final String msg = "msg";
     public static final String type = "type";
 
@@ -59,6 +60,7 @@ public class Constants {
     public static final String feedbackId = "feedbackId";
     public static final String requests = "requests";
     public static final String requestType = "requestType";
+    public static final String requestDate = "requestDate";
 
     // delay in closing screen
     public static final long delay = 2000;

@@ -2,6 +2,7 @@ package internal;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,26 +30,30 @@ public class SmartSessionManager {
         sharedPreferences = context.getSharedPreferences(Shared_Preference_name, 0);
         editor = sharedPreferences.edit();
 
-        // by default requests count is 0
-        editor.putInt(Constants.requests, 0);
-        editor.apply();
     }
 
 
     ////////////////////////////// REQUESTS ////////////////////////////////
     // get open request count
     public int getRequestCount(){
+        Log.v(Constants.appName, "Count : " +sharedPreferences.getInt(Constants.requests, 0));
         return sharedPreferences.getInt(Constants.requests, 0);
+
     }
 
     // increment request count when user creates a request
     public void updateOpenRequestsCount(){
 
         if(sharedPreferences.contains(Constants.requests)){
+            Log.v(Constants.appName, "Store 1");
             editor.putInt(Constants.requests, sharedPreferences.getInt(Constants.requests, 0)+1);
+            editor.commit();
+            Log.v(Constants.appName, "Count : " +sharedPreferences.getInt(Constants.requests, 0));
         }
         else {
+            Log.v(Constants.appName, "Store 2");
             editor.putInt(Constants.requests, 1);
+            editor.commit();
         }
     }
 

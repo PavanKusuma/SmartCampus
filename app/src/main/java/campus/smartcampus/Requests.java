@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,23 +20,18 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.json.JSONException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import internal.SmartSessionManager;
 import modal.Request;
@@ -62,7 +56,9 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
     // request status
     int status = -3;
     String msg = "";
+    JSONArray requestsData;
     JSONObject jsonResponse;
+    ArrayList<Request> requests = new ArrayList<Request>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -112,11 +108,15 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
         // Check if any active requests from current session
         // if any, retrieve the details
         // after fetching details, if request status is CLOSED, then delete request from current session
-        smartSessionManager = new SmartSessionManager(getContext());
+        smartSessionManager = new SmartSessionManager(getActivity());
         if(smartSessionManager.getRequestCount() > 0){
 
             // get the pending requests with the userObjectId
             Log.v(Constants.appName, "Requests here");
+
+            LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+            requestsListView.setLayoutManager(mLayoutManager);
+
             new GetNewRequestsList().execute(Routes.myRequests);
 
         }
@@ -133,7 +133,7 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
     // Apply leave
     private class GetNewRequestsList extends AsyncTask<String, Void, Void> {
 
-        private String Content = "";
+        private String response = "";
         private String Error = null;
         String data = "";
 
@@ -171,32 +171,42 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
                         + "&" + URLEncoder.encode(Constants.offset, "UTF-8") + "=" + offset;
 
 
-                Log.v(Constants.appName, urls[0]+data);
 
-                // Defined URL  where to send data
-                java.net.URL url = new URL(urls[0]+data);
+                URL url = new URL(urls[0]+ data);
 
-                // Send POST data request
-                URLConnection conn = url.openConnection();
-                conn.setDoOutput(true);
-                //conn.setDoInput(true);
+                // connection
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
 
-                // Get the server response
+                if (conn.getResponseCode() != 200) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            showErrorMessage();
+                        }
+                    });
+                }
+
                 reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                // read the response
                 StringBuilder sb = new StringBuilder();
                 String line = null;
 
-                // Read Server Response
                 while ((line = reader.readLine()) != null) {
                     // Append server response in string
                     sb.append(line + " ");
                 }
 
-                // Append Server Response To Content String
-                Content = sb.toString();
-                Log.v(Constants.appName, Content);
-                // close the reader
-                //reader.close();
+                // get the server response
+                response = sb.toString();
+Log.v(Constants.appName, response);
+                // close connection
+                reader.close();
+                conn.disconnect();
+
 
             } catch (Exception ex) {
 
@@ -235,31 +245,55 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
 
             } else {
 
-                //Log.i("Connection", Content);
+                //Log.i("Connection", response);
                 /****************** Start Parse Response JSON Data *************/
 
 
                 try {
 
                     /****** Creates a new JSONObject with name/value mappings from the JSON string. ********/
-                    jsonResponse = new JSONObject(Content);
+                    jsonResponse = new JSONObject(response);
 
 
                     /***** Returns the value mapped by name if it exists and is a JSONArray. ***/
                     status = jsonResponse.getInt(Constants.status);
-                    msg = jsonResponse.getString(Constants.msg);
+                    requestsData = jsonResponse.getJSONArray(Constants.data);
 
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
 
+                    Log.v(Constants.appName, "OK"+requestsData.length());
                             // check the status and proceed with the logic
                             switch (status){
 
                                 // exception occurred
                                 case 200:
 
-                                    // populate the list view
+                                    try {
+
+                                        Log.v(Constants.appName, "OK"+requestsData.length());
+                                        // populate the list view
+                                        for (int i=0; i<requestsData.length(); i++) {
+
+                                            Request request = new Request();
+                                             request.setRequestId(requestsData.getJSONObject(i).getString(Constants.requestId));
+                                             request.setRequestType(requestsData.getJSONObject(i).getString(Constants.requestType));
+                                             request.setDescription(requestsData.getJSONObject(i).getString(Constants.description));
+                                             request.setRequestDate(requestsData.getJSONObject(i).getString(Constants.requestDate));
+
+                                            requests.add(request);
+                                            Log.v(Constants.appName, request.getRequestId());
+                                        }
+
+                                        RequestsAdapter requestsAdapter = new RequestsAdapter(getActivity().getApplicationContext(), requests);
+                                        requestsListView.setAdapter(requestsAdapter);
+                                        requestsAdapter.notifyDataSetChanged();
+
+
+                                        break;
+                                    }
+                                    catch(Exception e){
+                                        e.printStackTrace();
+                                        showErrorMessage();
+                                    }
 
                                     break;
 
@@ -274,19 +308,16 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
                                         break;
                                     }
                                     catch(Exception e){
+                                        e.printStackTrace();
                                         showErrorMessage();
                                     }
 
 
                             }
-                        }
-                    });
 
 
 
-
-
-                } catch (JSONException e) {
+                } catch (Exception e) {
 
                     e.printStackTrace();
                     showErrorMessage();
@@ -306,9 +337,6 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
         Context context;
         ArrayList<Request> myRequestsList;
         LayoutInflater layoutInflater;
-        
-        //private LruCache<String, byte[]> mMemoryCache;
-        String category;
 
         // constructor
         public RequestsAdapter(Context context, ArrayList<Request> requestsList) {
@@ -348,12 +376,6 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
 
                 //hereText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.link_white_24dp,0,0,0);
 
-                closeRequest.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
 
             }
 
@@ -388,9 +410,35 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
         }
 
         @Override
-        public void onBindViewHolder(final RequestsViewHolder holder, int i) {
+        public void onBindViewHolder(RequestsViewHolder holder, int i) {
 
             try {
+
+
+                // get the date format and convert it into required format to display
+                //java.util.Date date = holder.simpleDateFormat.parse(myRequestsList.get(i).getRequestDate());
+                //simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy, hh:mm aa");
+                //holder.simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy");
+
+
+               // Log.v(Constants.appName, Snippets.convertDate(myRequestsList.get(i).getRequestDate()));
+String date = Snippets.convertDate(myRequestsList.get(i).getRequestDate());
+                Log.v(Constants.appName, date);
+                // set title and created At
+                holder.requestType.setText(myRequestsList.get(i).getRequestType());
+                holder.requestDate.setText(date);
+                holder.requestDescription.setText(myRequestsList.get(i).getDescription());
+
+
+                holder.closeRequest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+                final int position = i;
+
                 Log.v(Constants.appName, "Inserted here" + i);
 
                 if(i == myRequestsList.size()-1){
@@ -412,26 +460,6 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
                     Log.v(Constants.appName, "Wow updating");
                 }
 
-                // get the date format and convert it into required format to display
-                java.util.Date date = holder.simpleDateFormat.parse(myRequestsList.get(i).getRequestDate());
-                //simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy, hh:mm aa");
-                holder.simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy");
-
-            /*Typeface sansTFont = Typeface.createFromAsset(context.getResources().getAssets(), Constants.fontNameT);
-            Typeface sansFont = Typeface.createFromAsset(context.getResources().getAssets(), Constants.fontNameR);
-            globalWallPostTitle.setTypeface(sansFont);
-            globalWallPostHits.setTypeface(sansFont);
-            globalCategoryName.setTypeface(sansFont);
-            globalWallPostCreatedAt.setTypeface(sansFont); //globalWallPostCreatedAt.setVisibility(View.INVISIBLE);
-            globalWallPostDescription.setTypeface(sansFont);*/
-
-
-                // set title and created At
-                holder.requestType.setText(myRequestsList.get(i).getRequestType());
-                holder.requestDate.setText(holder.simpleDateFormat.format(date));
-                holder.requestDescription.setText(Uri.decode(myRequestsList.get(i).getDescription()));
-
-                final int position = i;
 
 
                 // navigate to link page only if link is available
@@ -513,7 +541,7 @@ public class Requests extends Fragment implements Home.FragmentLifeCycle {
                         sb.append(line + " ");
                     }
 
-                    // Append Server Response To Content String
+                    // Append Server Response To response String
                     Content = sb.toString();
 
                     // close the reader

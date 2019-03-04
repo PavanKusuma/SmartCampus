@@ -25,6 +25,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -331,75 +332,33 @@ public class OutingRequest extends AppCompatActivity {
         @Override
         protected Void doInBackground(String... urls) {
 
-            /************ Make Post Call To Web Server ***********/
-            BufferedReader reader = null;
-
-            // Send data
             try {
 
-                // Set Request parameter
-                data += "?&" + URLEncoder.encode(Constants.requestId, "UTF-8") + "=" + Snippets.getRequestId()
-                        + "&" + URLEncoder.encode(Constants.requestType, "UTF-8") + "=" + "Outing"
-                        + "&" + URLEncoder.encode(Constants.collegeId, "UTF-8") + "=" + "yeswe02"
-                        + "&" + URLEncoder.encode(Constants.username, "UTF-8") + "=" + "PavanKusuma"
-                        + "&" + URLEncoder.encode(Constants.branch, "UTF-8") + "=" + "IT"
-                        + "&" + URLEncoder.encode(Constants.year, "UTF-8") + "=" + 0
-                        + "&" + URLEncoder.encode(Constants.description, "UTF-8") + "=" +  URLEncoder.encode((String) outingText.getText().toString(), "UTF-8")
-                        + "&" + URLEncoder.encode(Constants.requestFrom, "UTF-8") + "=" + fromDate
-                        + "&" + URLEncoder.encode(Constants.requestTo, "UTF-8") + "=" + toDate
-                        + "&" + URLEncoder.encode(Constants.duration, "UTF-8") + "=" + number_of_days;
+                URL url = new URL("http://192.168.0.5:3000/api/customers");
 
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
 
-                Log.v(Constants.appName, urls[0]+data);
-
-                // Defined URL  where to send data
-                java.net.URL url = new URL(urls[0]+data);
-
-                // Send POST data request
-                URLConnection conn = url.openConnection();
-                conn.setDoOutput(true);
-                //conn.setDoInput(true);
-
-                // Get the server response
-                reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-
-                // Read Server Response
-                while ((line = reader.readLine()) != null) {
-                    // Append server response in string
-                    sb.append(line + " ");
+                if (conn.getResponseCode() != 200) {
+                    throw new RuntimeException("Failed : HTTP error code : "
+                            + conn.getResponseCode());
                 }
 
-                // Append Server Response To Content String
-                Content = sb.toString();
-                Log.v(Constants.appName, Content);
-                // close the reader
-                //reader.close();
+                BufferedReader br = new BufferedReader(new InputStreamReader(
+                        (conn.getInputStream())));
 
-            } catch (Exception ex) {
-
-                ex.printStackTrace();
-                Error = ex.getMessage();
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        showErrorMessage();
-                    }
-                });
-
-
-            } finally {
-
-                try {
-
-                    reader.close();
-
-                } catch (Exception ex) {
-                    Error = ex.getMessage();
+                String output;
+                System.out.println("Output from Server .... \n");
+                while ((output = br.readLine()) != null) {
+                    System.out.println(output);
                 }
+
+                conn.disconnect();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
             }
 
             return null;

@@ -1,6 +1,8 @@
 package utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class Snippets {
@@ -84,5 +86,21 @@ public class Snippets {
             str.append((char) Integer.parseInt(hex.substring(i, i + 2), 16));
         }
         return str.toString();
+    }
+
+    public static String convertDate(String date){
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd, yyyy");
+
+        Date convertedDate = new Date();
+
+        try {
+            convertedDate = inputFormat.parse(date);
+        }
+        catch (Exception e){
+
+        }
+        return outputFormat.format(convertedDate);
     }
 }

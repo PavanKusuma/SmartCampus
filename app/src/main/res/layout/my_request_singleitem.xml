@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:text="Request Type"
         android:padding="8dp"
-        app:fontFamily="@font/karla"/>
+        app:fontFamily="@font/karla"
+        android:textColor="@color/textSecondary"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/requestDate"
@@ -22,7 +23,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:padding="8dp"
-        app:fontFamily="@font/karla"/>
+        app:fontFamily="@font/karla"
+        android:textColor="@color/textSecondary"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/requestDescription"
@@ -32,7 +34,8 @@
         android:text="@string/lorem"
         android:maxLines="4"
         android:padding="8dp"
-        app:fontFamily="@font/karla"/>
+        app:fontFamily="@font/karla"
+        android:textColor="@color/textSecondary"/>
 
     <LinearLayout
         android:id="@+id/statusLayout"
@@ -107,7 +110,7 @@
         android:id="@+id/closeRequest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CLOSE REQUEST"
+        android:text="Close Request"
         android:padding="8dp"
         android:layout_margin="8dp"
         android:textSize="16sp"
@@ -116,6 +119,6 @@
         android:layout_alignParentEnd="true"
         android:textColor="@color/appPrimary"
         android:background="@color/lightBackground"
-        app:fontFamily="@font/karla"/>
+        app:fontFamily="@font/poppins_medium"/>
 
 </RelativeLayout>

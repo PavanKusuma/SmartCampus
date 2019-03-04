@@ -1,11 +1,9 @@
 package campus.smartcampus;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
@@ -19,7 +17,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -27,9 +24,8 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -66,7 +62,6 @@ public class LeaveRequest extends AppCompatActivity {
     // request status
     int status = -3;
     String msg = "";
-    JSONObject jsonResponse;
 
     // session
     SmartSessionManager smartSessionManager;
@@ -327,9 +322,10 @@ public class LeaveRequest extends AppCompatActivity {
     // Apply leave
     private class NewLeave extends AsyncTask<String, Void, Void> {
 
-        private String Content = "";
-        private String Error = null;
+        private String response = "";
+        String error = null;
         String data = "";
+        JSONObject jsonResponse;
 
         @Override
         protected void onPreExecute() {
@@ -349,19 +345,6 @@ public class LeaveRequest extends AppCompatActivity {
             // Send data
             try {
 
-                //collegeId = urls[1];
-
-                // Set Request parameter
-/*                data += "/" + URLEncoder.encode(Snippets.getLeaveId(), "UTF-8")
-                        + "/" + URLEncoder.encode("yeswe02", "UTF-8")
-                        + "/" + URLEncoder.encode("PavanKusuma", "UTF-8")
-                        + "/" + URLEncoder.encode("IT", "UTF-8")
-                        + "/" + URLEncoder.encode("0", "UTF-8")
-                        + "/" + URLEncoder.encode((String) leaveText.getText().toString(), "UTF-8")
-                        + "/" + URLEncoder.encode(fromDate, "UTF-8")
-                        + "/" + URLEncoder.encode(toDate, "UTF-8")
-                        + "/" + URLEncoder.encode(String.valueOf(number_of_days), "UTF-8");*/
-
                 // Set Request parameter
                 data += "?&" + URLEncoder.encode(Constants.requestId, "UTF-8") + "=" + Snippets.getRequestId()
                         + "&" + URLEncoder.encode(Constants.requestType, "UTF-8") + "=" + "Leave"
@@ -375,37 +358,46 @@ public class LeaveRequest extends AppCompatActivity {
                         + "&" + URLEncoder.encode(Constants.duration, "UTF-8") + "=" + number_of_days;
 
 
-                Log.v(Constants.appName, urls[0]+data);
+                URL url = new URL("http://192.168.0.5:3000/api/new_request/"+ data);
 
-                // Defined URL  where to send data
-                java.net.URL url = new URL(urls[0]+data);
+                // connection
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET");
+                    conn.setRequestProperty("Accept", "application/json");
 
-                // Send POST data request
-                URLConnection conn = url.openConnection();
-                conn.setDoOutput(true);
-                //conn.setDoInput(true);
+                if (conn.getResponseCode() != 200) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
 
-                // Get the server response
-                reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                            showErrorMessage();
+                        }
+                    });
+                }
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                // read the response
                 StringBuilder sb = new StringBuilder();
                 String line = null;
 
-                // Read Server Response
-                while ((line = reader.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
                     // Append server response in string
                     sb.append(line + " ");
                 }
 
-                // Append Server Response To Content String
-                Content = sb.toString();
-                Log.v(Constants.appName, Content);
-                // close the reader
-                //reader.close();
+                // get the server response
+                response = sb.toString();
+
+                // close connection
+                br.close();
+                conn.disconnect();
+
 
             } catch (Exception ex) {
 
                 ex.printStackTrace();
-                Error = ex.getMessage();
+                error = ex.getMessage();
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -415,16 +407,6 @@ public class LeaveRequest extends AppCompatActivity {
                     }
                 });
 
-
-            } finally {
-
-                try {
-
-                    reader.close();
-
-                } catch (Exception ex) {
-                    Error = ex.getMessage();
-                }
             }
 
             return null;
@@ -432,82 +414,66 @@ public class LeaveRequest extends AppCompatActivity {
 
         protected void onPostExecute(Void unused) {
 
-            if (Error != null) {
+            if (error != null) {
 
-                Log.i("Connection", Error);
                 showErrorMessage();
 
             } else {
 
-                //Log.i("Connection", Content);
                 /****************** Start Parse Response JSON Data *************/
-
-
                 try {
 
                     /****** Creates a new JSONObject with name/value mappings from the JSON string. ********/
-                    jsonResponse = new JSONObject(Content);
 
+                    if(response.length() > 0) {
+                        jsonResponse = new JSONObject(response);
 
-                    /***** Returns the value mapped by name if it exists and is a JSONArray. ***/
-                    status = jsonResponse.getInt(Constants.status);
-                    msg = jsonResponse.getString(Constants.msg);
+                        /***** Returns the value mapped by name if it exists and is a JSONArray. ***/
+                        status = jsonResponse.getInt(Constants.status);
+                        msg = jsonResponse.getString(Constants.msg);
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
 
-                            // check the status and proceed with the logic
-                            switch (status){
+                                // check the status and proceed with the logic
+                                switch (status) {
 
-                                // exception occurred
-                                case 200:
+                                    // exception occurred
+                                    case 200:
 
-                                    // increment the request count in session
-                                    smartSessionManager.updateOpenRequestsCount();
+                                        // increment the request count in session
+                                        smartSessionManager.updateOpenRequestsCount();
 
-                                    // show result
-                                    loaderView.setVisibility(View.GONE);
-                                    resultView.setVisibility(View.VISIBLE);
-                                    resultText.setText(msg);
+                                        // show result
+                                        loaderView.setVisibility(View.GONE);
+                                        resultView.setVisibility(View.VISIBLE);
+                                        resultText.setText(msg);
 
-                                    // finish
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            finish();
-                                        }
-                                    }, Constants.delay);
+                                        // finish
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                finish();
+                                            }
+                                        }, Constants.delay);
 
-                                    break;
+                                        break;
 
-                                // allow login
-                                default:
-
-                                    try {
+                                    // allow login
+                                    default:
 
                                         // show error
                                         showErrorMessage();
-
                                         break;
-                                    }
-                                    catch(Exception e){
-                                        showErrorMessage();
-                                    }
-
-
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
 
+                } catch (Exception e) {
 
-
-
-
-                } catch (JSONException e) {
-
-                    e.printStackTrace();
                     showErrorMessage();
                 }
 
@@ -518,6 +484,7 @@ public class LeaveRequest extends AppCompatActivity {
         }
 
     }
+
 
     public void closeBottomSheet(){
 
