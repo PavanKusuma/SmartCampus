@@ -54,6 +54,7 @@ public class Constants {
     public static final String year = "year";
     public static final String requestFrom = "requestFrom";
     public static final String requestTo = "requestTo";
+    public static final String isOpen = "isOpen";
     public static final String duration = "duration";
 
     public static final String requestId = "requestId";
@@ -61,6 +62,9 @@ public class Constants {
     public static final String requests = "requests";
     public static final String requestType = "requestType";
     public static final String requestDate = "requestDate";
+    public static final String requestStatus = "requestStatus";
+    public static final String leave = "leave";
+    public static final String outing = "outing";
 
     // delay in closing screen
     public static final long delay = 2000;

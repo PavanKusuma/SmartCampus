@@ -18,6 +18,7 @@ public class Request {
     private String comment;
     private String issuer;
     private String issuedOn;
+    private int isOpen;
     private int isStudentOut;
 
     public String getRequestId() {
@@ -146,6 +147,14 @@ public class Request {
 
     public void setIssuedOn(String issuedOn) {
         this.issuedOn = issuedOn;
+    }
+
+    public int getIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(int isOpen) {
+        this.isOpen = isOpen;
     }
 
     public int getIsStudentOut() {

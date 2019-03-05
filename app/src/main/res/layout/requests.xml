@@ -1,141 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:id="@+id/requestsLayout">
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="32dp">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/requestHeading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Requests"
-                android:textColor="@color/textPrimary"
-                app:fontFamily="@font/poppins_medium"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/breadcrumbText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textSecondary"
-                android:text="All your requests at one place"
-                app:fontFamily="@font/karla"
-                android:layout_marginBottom="16dp"
-                android:layout_below="@id/requestHeading"/>
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/leave"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/breadcrumbText"
-                android:padding="12dp"
-                android:background="@color/palette_red"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Apply Leave"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:fontFamily="@font/poppins_medium" />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/outing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/leave"
-                android:padding="12dp"
-                android:background="@color/palette_orange"
-                android:layout_marginBottom="8dp"
-                android:text="Request Outing"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:fontFamily="@font/poppins_medium" />
-
-            <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/grievance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/outing"
-                android:padding="12dp"
-                android:background="@color/palette_yellow"
-                android:layout_marginBottom="16dp"
-                android:text="Report Grievance"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:fontFamily="@font/poppins_medium" />
-
-            <View
-                android:id="@+id/seperator_one"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/line"
-                android:layout_below="@id/grievance"
-                android:padding="12dp"
-                android:layout_marginBottom="16dp"/>
-
-            <RelativeLayout
-                android:id="@+id/activeRequestLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_below="@id/seperator_one">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Currently no active requests"
-                    android:textColor="@color/textThrid"
-                    app:fontFamily="@font/karla"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:padding="4dp"
-                    android:layout_centerHorizontal="true"/>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/requestsListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:layout_below="@id/updatesHeading"/>
-
-            </RelativeLayout>
-
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Browse History"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/activeRequestLayout"
-                android:layout_marginBottom="16dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
-                android:paddingLeft="8dp"
-                android:paddingStart="8dp"
-                android:paddingRight="8dp"
-                android:paddingEnd="8dp"
-                app:fontFamily="@font/poppins_medium"
-                android:textColor="@color/textSecondary"
-                android:background="@drawable/outline_secondary_background"/>
-
-        </RelativeLayout>
-
-    </android.support.v4.widget.NestedScrollView>
-
-</android.support.design.widget.CoordinatorLayout>
+<?xml version="1.0" encoding="utf-8"?><android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"    android:layout_width="match_parent"    android:layout_height="match_parent"    android:background="@drawable/light_background"    android:id="@+id/requestsLayout">    <android.support.v4.widget.NestedScrollView        android:layout_width="fill_parent"        android:layout_height="match_parent">        <RelativeLayout            android:layout_width="match_parent"            android:layout_height="match_parent"            android:padding="32dp">            <android.support.v7.widget.AppCompatTextView                android:id="@+id/requestHeading"                android:layout_width="wrap_content"                android:layout_height="wrap_content"                android:text="Requests"                android:textColor="@color/textPrimary"                app:fontFamily="@font/poppins_medium"                android:textSize="18sp"                android:textStyle="bold"/>            <android.support.v7.widget.AppCompatTextView                android:id="@+id/breadcrumbText"                android:layout_width="wrap_content"                android:layout_height="wrap_content"                android:textColor="@color/textSecondary"                android:text="All your requests at one place"                app:fontFamily="@font/karla"                android:layout_marginBottom="16dp"                android:layout_below="@id/requestHeading"/>            <android.support.v7.widget.AppCompatTextView                android:id="@+id/leave"                android:layout_width="match_parent"                android:layout_height="wrap_content"                android:layout_below="@id/breadcrumbText"                android:padding="12dp"                android:background="@drawable/red_background"                android:layout_marginTop="16dp"                android:layout_marginBottom="8dp"                android:text="Apply Leave"                android:textColor="@color/white"                android:textSize="16sp"                android:textStyle="bold"                app:fontFamily="@font/poppins_medium" />            <android.support.v7.widget.AppCompatTextView                android:id="@+id/outing"                android:layout_width="match_parent"                android:layout_height="wrap_content"                android:layout_below="@id/leave"                android:padding="12dp"                android:layout_marginBottom="16dp"                android:background="@drawable/orange_background"                android:text="Request Outing"                android:textColor="@color/white"                android:textSize="16sp"                android:textStyle="bold"                app:fontFamily="@font/poppins_medium" />            <View                android:id="@+id/seperator_one"                android:layout_width="match_parent"                android:layout_height="1dp"                android:background="@color/line"                android:layout_below="@id/outing"                android:padding="12dp"                android:layout_marginBottom="16dp"/>            <RelativeLayout                android:id="@+id/activeRequestLayout"                android:layout_width="match_parent"                android:layout_height="wrap_content"                android:layout_marginBottom="16dp"                android:layout_below="@id/seperator_one">                <android.support.v7.widget.AppCompatTextView                    android:layout_width="wrap_content"                    android:layout_height="wrap_content"                    android:text="Currently no active requests"                    android:textColor="@color/textThrid"                    app:fontFamily="@font/karla"                    android:layout_marginLeft="16dp"                    android:layout_marginStart="16dp"                    android:layout_marginRight="16dp"                    android:layout_marginEnd="16dp"                    android:padding="4dp"                    android:layout_centerHorizontal="true"/>                <android.support.v7.widget.RecyclerView                    android:id="@+id/requestsListView"                    android:layout_width="match_parent"                    android:layout_height="wrap_content"                    />            </RelativeLayout>            <android.support.v7.widget.AppCompatTextView                android:id="@+id/getOldRequests"                android:layout_width="wrap_content"                android:layout_height="wrap_content"                android:text="See Old Requests"                android:layout_centerHorizontal="true"                android:layout_below="@id/activeRequestLayout"                android:layout_marginBottom="16dp"                android:paddingTop="4dp"                android:paddingBottom="4dp"                android:paddingLeft="8dp"                android:paddingStart="8dp"                android:paddingRight="8dp"                android:paddingEnd="8dp"                app:fontFamily="@font/poppins_medium"                android:textColor="@color/textSecondary"                android:background="@drawable/outline_secondary_background"/>            <android.support.v7.widget.AppCompatTextView                android:id="@+id/oldRequestsHeading"                android:layout_width="wrap_content"                android:layout_height="wrap_content"                android:text="Old Requests"                android:layout_centerHorizontal="true"                android:layout_below="@id/activeRequestLayout"                android:layout_marginBottom="16dp"                android:paddingTop="4dp"                android:paddingBottom="4dp"                android:paddingLeft="8dp"                android:paddingStart="8dp"                android:paddingRight="8dp"                android:paddingEnd="8dp"                app:fontFamily="@font/poppins_medium"                android:textColor="@color/textSecondary"                android:visibility="gone"/>            <ProgressBar                android:id="@+id/oldProgressBar"                android:layout_width="24dp"                android:layout_height="24dp"                android:layout_margin="8dp"                android:layout_below="@id/oldRequestsHeading"                android:layout_centerInParent="true"                android:visibility="gone"/>            <android.support.v7.widget.RecyclerView                android:id="@+id/oldRequestsListView"                android:layout_width="match_parent"                android:layout_height="wrap_content"                android:layout_below="@id/oldRequestsHeading"                android:visibility="gone"/>        </RelativeLayout>    </android.support.v4.widget.NestedScrollView></android.support.design.widget.CoordinatorLayout>

@@ -7,6 +7,7 @@
     <color name="stroke">#cccccc</color>
 
     <color name="textPrimary">#333333</color>
+    <color name="textMiddle">#666666</color>
     <color name="textSecondary">#999999</color>
     <color name="textThrid">#cccccc</color>
     <color name="lightBackground">#E8F0FE</color>
@@ -18,7 +19,8 @@
     <color name="appPrimary">#2567F6</color>
     <color name="appPrimaryDark">#2845E0</color>
 
-    <color name="green">#59AD06</color>
+    <color name="green">#14961A</color>
+    <color name="green_extra">#59AD06</color>
     <color name="yellow">#FFD54F</color>
     <color name="blue">#4FB5FF</color>
     <color name="red">#DA4743</color>

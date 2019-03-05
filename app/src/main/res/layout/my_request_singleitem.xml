@@ -4,25 +4,37 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/white_background"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:layout_marginBottom="16dp">
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/requestType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Request Type"
-        android:padding="8dp"
+        android:layout_margin="8dp"
         app:fontFamily="@font/karla"
-        android:textColor="@color/textSecondary"/>
+        android:paddingLeft="4dp"
+        android:paddingStart="4dp"
+        android:paddingRight="4dp"
+        android:paddingEnd="4dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:background="@drawable/third_background"
+        android:textColor="@color/white"/>
+
+
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/requestDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1 Day ago"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:padding="8dp"
+        android:layout_below="@id/requestType"
+        android:textSize="16sp"
+        android:paddingTop="8dp"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
         app:fontFamily="@font/karla"
         android:textColor="@color/textSecondary"/>
 
@@ -30,81 +42,61 @@
         android:id="@+id/requestDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/requestType"
+        android:layout_below="@id/requestDate"
         android:text="@string/lorem"
         android:maxLines="4"
-        android:padding="8dp"
+        android:textSize="16sp"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:paddingRight="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp"
         app:fontFamily="@font/karla"
         android:textColor="@color/textSecondary"/>
+
 
     <LinearLayout
         android:id="@+id/statusLayout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/requestDescription">
+        android:layout_below="@id/requestDescription"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/requestStatusPending"
+            android:id="@+id/statusHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pending for Approval"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            android:background="@color/lightBg"
+            android:text="STATUS:"
             android:textColor="@color/textSecondary"
             app:fontFamily="@font/karla"
             android:visibility="visible"/>
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/requestStatusApproved"
+            android:id="@+id/requestStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Approved"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            android:background="@color/lightBg"
-            android:textColor="@color/textSecondary"
+            android:textSize="18sp"
+            android:textColor="@color/green"
+            android:textStyle="bold"
             app:fontFamily="@font/karla"
             android:visibility="visible"/>
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/requestStatusApprovedWaiting"
+            android:id="@+id/requestStatusMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Approved and waiting to Issue"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            android:background="@color/lightBg"
-            android:textColor="@color/textSecondary"
+            android:textColor="@color/textPrimary"
             app:fontFamily="@font/karla"
-            android:visibility="visible"/>
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/requestStatusIssued"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Issued"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="8dp"
-            android:background="@color/lightBg"
-            android:textColor="@color/textSecondary"
-            app:fontFamily="@font/karla"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/seperator_one"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line"
-        android:layout_margin="8dp"
-        android:layout_below="@id/statusLayout"/>
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/closeRequest"
@@ -114,11 +106,20 @@
         android:padding="8dp"
         android:layout_margin="8dp"
         android:textSize="16sp"
-        android:layout_below="@id/seperator_one"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@id/statusLayout"
+        android:layout_centerInParent="true"
         android:textColor="@color/appPrimary"
-        android:background="@color/lightBackground"
-        app:fontFamily="@font/poppins_medium"/>
+        android:background="@drawable/secondary_background"
+        app:fontFamily="@font/poppins_medium"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/closeProgressBar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_margin="8dp"
+        android:layout_below="@id/statusLayout"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 </RelativeLayout>
