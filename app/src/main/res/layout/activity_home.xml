@@ -1,23 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
+    android:paddingBottom="1dp"
+    android:id="@+id/homeLayout"
+    android:background="@color/white">
 
-    <android.support.design.widget.BottomNavigationView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:menu="@menu/home_menu"
-        android:background="@color/white"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/menuHome"/>
+        android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/pagerHome"
-        android:layout_above="@id/menuHome"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="32dp">
 
-</RelativeLayout>
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/homeHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gwen Stacy"
+                app:fontFamily="@font/poppins_medium"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/brand_black"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/homeGreeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good Morning!"
+                app:fontFamily="@font/poppins_medium"
+                android:layout_below="@id/homeHeading"
+                android:textColor="@color/textSecondary"
+                android:textSize="12sp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/circularsHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/circulars"
+                app:fontFamily="@font/poppins_medium"
+                android:textColor="@color/textSecondary"
+                android:layout_below="@id/homeGreeting"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="18sp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/circularsListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/circularsHeading"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/allCirculars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEE ALL"
+                android:layout_below="@id/circularsListView"
+                android:paddingTop="16dp"
+                android:paddingRight="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp"
+                android:textColor="@color/appPrimary"
+                app:fontFamily="@font/poppins_medium"/>
+
+
+            <View
+                android:id="@+id/seperator_one"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                android:layout_below="@id/allCirculars"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/quickLinksHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quickLinks"
+                app:fontFamily="@font/poppins_medium"
+                android:textColor="@color/textSecondary"
+                android:layout_below="@id/seperator_one"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/requestsLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/white_background"
+                android:layout_below="@id/quickLinksHeading">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/requestsImageView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/ic_requests"
+                    android:padding="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="12dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/requests"
+                        app:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/textPrimary"/>
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Apply leave, Request outing"
+                        app:fontFamily="@font/karla"
+                        android:textColor="@color/textSecondary"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+    <include layout="@layout/all_circulars_bottomsheet"/>
+
+</android.support.design.widget.CoordinatorLayout>

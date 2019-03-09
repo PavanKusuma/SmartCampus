@@ -1,6 +1,11 @@
 package utils;
 
+import android.util.Log;
+
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -87,6 +92,100 @@ public class Snippets {
         }
         return str.toString();
     }
+
+    public static String getDuration(String date){
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd, yyyy");
+
+        Date convertedDate = new Date();
+        Date today = new Date();
+
+/*
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date1 = new Date();
+        System.out.println(dateFormat.format(date1));
+*/
+
+        try {
+            convertedDate = inputFormat.parse(date);
+
+
+            long secs = (today.getTime() - convertedDate.getTime())/1000;
+            long hours = 0;
+
+            if(secs > 3600) {
+                hours = secs / 3600;
+
+                // get the hours
+                if(hours > 24){
+
+                    // get the days
+                    long days = (hours/24);
+
+                    // get months
+                    if(days > 31){
+
+                        long months = days/30;
+
+                        if(months > 1) {
+                            return months + " months ago";
+                        }
+                        else {
+                            return "a month ago";
+                        }
+
+                    }
+                    else {
+
+                        if(days > 1) {
+                            return days + " days ago";
+                        }
+                        else {
+                            return "a day ago";
+                        }
+
+                    }
+                }
+                else {
+
+                    if(hours > 1) {
+                        return hours + " hrs ago";
+                    }
+                    else {
+                        return "an hr ago";
+                    }
+                }
+
+            }
+            else {
+                // less than an hour
+                long mins = 0;
+                if(secs > 60){
+                    mins = secs/60;
+
+                    if(mins > 1) {
+                        return mins + " mins ago";
+                    }
+                    else {
+                        return "a min ago";
+                    }
+                }
+                else {
+                    return secs+" secs ago";
+                }
+            }
+
+
+    }
+        catch (Exception e){
+
+        }
+
+        return "";
+
+    }
+
 
     public static String convertDate(String date){
 

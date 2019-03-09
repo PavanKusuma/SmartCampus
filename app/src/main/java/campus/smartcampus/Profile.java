@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-public class Profile extends Fragment implements Home.FragmentLifeCycle {
+public class Profile extends Fragment implements GlobalHome.FragmentLifeCycle {
 
     RelativeLayout itemView;
 

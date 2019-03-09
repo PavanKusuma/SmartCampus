@@ -3,11 +3,14 @@
 
     <string name="feed">Feed</string>
     <string name="requests">Requests</string>
+    <string name="requestsIntro">All your requests at one place</string>
+    <string name="requestsHistory">Requests History</string>
     <string name="profile">Profile</string>
     <string name="batch">Batch</string>
     <string name="more">More</string>
     <string name="updates">Updates</string>
     <string name="circulars">Circulars</string>
+    <string name="quickLinks">Quick Links</string>
     <string name="post">Post</string>
     <string name="submit">Submit</string>
 

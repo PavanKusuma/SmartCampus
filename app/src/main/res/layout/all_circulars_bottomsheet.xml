@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:behavior_hideable="true"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+    android:id="@+id/circularBottomSheetLayout">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <View
+            android:layout_width="24dp"
+            android:layout_height="3dp"
+            android:background="@color/textThrid"
+            android:layout_centerHorizontal="true"/>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/closeCirculars"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:srcCompat="@drawable/ic_cancel"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="24dp"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/allCircularsHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/circulars"
+            app:textAllCaps="true"
+            app:fontFamily="@font/poppins_medium"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/brand_black"
+            android:layout_marginTop="24dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/allCircularsSubHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="news, announcements and more"
+            android:layout_below="@id/allCircularsHeading"
+            app:fontFamily="@font/poppins_medium"
+            android:textColor="@color/textSecondary"
+            android:textSize="12sp"
+            android:layout_marginBottom="16dp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/allCircularsListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/allCircularsSubHeading"/>
+
+        <ProgressBar
+            android:id="@+id/allCircularsProgress"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@id/allCircularsListView"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

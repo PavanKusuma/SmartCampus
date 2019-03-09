@@ -66,6 +66,16 @@ public class Constants {
     public static final String leave = "leave";
     public static final String outing = "outing";
 
+
+    public static final String circularId = "circularId";
+    public static final String subject = "subject";
+    public static final String isActive = "isActive";
+    public static final String linkUrl = "linkUrl";
+    public static final String linkTitle = "linkTitle";
+    public static final String modifiedDate = "modifiedDate";
+    public static final String mediaCount = "mediaCount";
+    public static final String media = "media";
+
     // delay in closing screen
     public static final long delay = 2000;
 

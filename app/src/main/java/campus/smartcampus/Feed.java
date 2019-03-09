@@ -26,7 +26,7 @@ import java.net.URLEncoder;
 
 import utils.Constants;
 
-public class Feed extends Fragment implements Home.FragmentLifeCycle {
+public class Feed extends Fragment implements GlobalHome.FragmentLifeCycle {
 
     RelativeLayout itemView;
     RecyclerView circularListView, updatesListView;

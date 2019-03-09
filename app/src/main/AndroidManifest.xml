@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Home">
+        <activity android:name=".GlobalHome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,6 +22,7 @@
         </activity>
 
         <activity android:name=".Login"/>
+        <activity android:name=".Requests"/>
         <activity android:name=".LeaveRequest"/>
         <activity android:name=".OutingRequest"/>
         <activity android:name=".GrievanceRequest"/>
